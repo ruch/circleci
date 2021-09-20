@@ -8,7 +8,8 @@ jobs:
     steps:
       - checkout
       - run: cd www
-      - run: python -m SimpleHTTPServer 8000
+      - run: ls
+      - run: python3 -m http.server 9000
   test:
     working_directory: ~/circleci-python
     docker:
