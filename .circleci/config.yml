@@ -7,9 +7,9 @@ jobs:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
-      - run: cd www
+      - run: cd ~/circleci-python/www
       - run: ls
-      - run: python3 -m http.server 9000
+      - run: python3 -m http.server 8000
   test:
     working_directory: ~/circleci-python
     docker:
