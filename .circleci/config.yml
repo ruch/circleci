@@ -1,26 +1,25 @@
 version: 2.1
 
 jobs:
-  build:
+  mybuildjob:
     working_directory: ~/circleci-python
     docker:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
-      - run: ls ~/circleci-python/www
-      - run: python3 -m http.server 8000 & exit
-  test:
+      - run: pushd ~/circleci-python/www/; python3 -m http.server 8000 & exit
+  mytestjob:
     working_directory: ~/circleci-python
     docker:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
-      - run: echo "hello"
+      - run: click-test.sh
 
 workflows:
   build_and_test:
     jobs:
-      - build
-      - test:
+      - mybuildjob
+      - mytestjob:
           requires:
-            - build
+            - mybuildjob
