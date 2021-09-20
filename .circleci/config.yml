@@ -15,6 +15,7 @@ jobs:
     steps:
       - checkout
       - run: pushd ~/circleci-python/www/; python3 -m http.server 8000 . > /tmp/http.log 2>&1 &
+      - run: ps | grep python
       - run: sh click-test.sh
 
 workflows:
