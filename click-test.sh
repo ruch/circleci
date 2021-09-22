@@ -1,3 +1,3 @@
-sitedump=`curl localhost:8000`
-
-#test for button functionality
+python -m SimpleHTTPServer 8000 &
+sleep 10
+curl localhost:8000
