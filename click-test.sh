@@ -1,4 +1,3 @@
-python -m SimpleHTTPServer 8000 &
-sleep 30
-curl https://google.com
+python3 -m http.server 8000 &
+sleep 20
 curl localhost:8000
