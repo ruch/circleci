@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  aws-cli: circleci/aws-cli@2.0.3
+
 jobs:
   build:
     working_directory: ~/mycode
@@ -22,13 +25,10 @@ jobs:
         image: ubuntu-2004:202010-01
     steps:
       - checkout
+      - aws-cli/setup
       - run:
-          name: Install elastic bean CLI
-          command: |
-            sudo apt-get update
-            sudo apt install python3-pip
-            sudo pip3 install awsebcli --upgrade
-      - run: aws s3 sync ~/mycode/www s3://cci-myapp
+          name: copy code to s3 -- AWS Bean Stalk deploys from here
+          command: aws s3 sync ~/mycode/www s3://cci-myapp
 
 workflows:
   build_and_test:
