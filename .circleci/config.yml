@@ -21,8 +21,7 @@ jobs:
       - run: sh click-test.sh
   deploy:
     working_directory: ~/mycode
-    machine:
-        image: ubuntu-2004:202010-01
+    executor: aws-cli/default
     steps:
       - checkout
       - aws-cli/setup
@@ -31,7 +30,7 @@ jobs:
           command: aws s3 sync ~/mycode/www s3://cci-myapp
 
 workflows:
-  build_and_test:
+  mypipeline:
     jobs:
       - build
       - test:
